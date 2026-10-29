@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 4a. Tiêu đề trang -->
+    <title>Online HTML Course</title>
+</head>
+<!-- 4a. Font Arial cho toàn trang -->
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+
+    <!-- 4b. Header có nền bisque và chữ darkorange -->
+    <header style="background-color: bisque; color: darkorange; text-align: center; padding: 15px;">
+        <h1 style="margin: 0;">ONLINE HTML COURSE</h1>
+    </header>
+
+    <main style="padding: 20px;">
+        <!-- 4c. Video chính kèm mô tả và phần bình luận -->
+        <section>
+            <iframe 
+                width="640" 
+                height="360" 
+                src="https://www.youtube.com/embed/qz0aGYrrlhU" 
+                title="HTML Tutorial for Beginners - Main Lesson" 
+                allowfullscreen>
+            </iframe>
+
+            <h2 style="color: darkorange;">INTRODUCTION TO HTML</h2>
+            <p>
+                <i>This video gives an overview of HTML, its history and the key concepts of HTML including HTML elements and HTML attributes.</i>
+            </p>
+
+            <h3 style="color: darkorange;">YOUR COMMENTS</h3>
+            <form action="#">
+                <textarea rows="5" cols="60" placeholder="Write your comment..."></textarea>
+                <div style="width: 450px; margin-top: 5px;">
+                    <button type="button">Comment</button>
+                    <span style="float: right;">
+                        <button type="button">👍 Like</button>
+                        <button type="button">👎 Dislike</button>
+                    </span>
+                </div>
+            </form>
+        </section>
+
+        <hr style="margin: 25px 0;">
+
+        <!-- 4d. Các liên kết/video bài học tiếp theo -->
+        <section>
+            <h3>More Lessons</h3>
+            <ul>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=UB1O30fR-EE" target="_blank">Lesson 2: HTML Crash Course For Absolute Beginners</a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/watch?v=mU6anWqZJcc" target="_blank">Lesson 3: Learn HTML5 and CSS3 From Scratch</a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- 4b. Footer có nền bisque và chữ darkorange -->
+    <footer style="background-color: bisque; color: darkorange; text-align: center; padding: 10px; margin-top: 20px;">
+        <p style="margin: 0;">Online HTML Course &copy; 2026</p>
+    </footer>
+
+</body>
+</html>

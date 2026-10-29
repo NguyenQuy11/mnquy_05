@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search</title>
+    
+</head>
+<body style="font-family: Arial, sans-serif; background-color: lightskyblue;">
+
+    <!-- Phần Form tìm kiếm giữ nguyên -->
+    <form action="#" method="get" style="max-width: 600px; margin: 0 auto;">
+        <fieldset>
+            <legend>Book search</legend>
+
+            <p>
+                <label for="book-title" style="display: inline-block; width: 80px;">Book title</label>
+                <input type="text" id="book-title" name="book_title" placeholder="Book title...">
+                <input type="checkbox" id="exact-match" name="exact_match" checked>
+                <label for="exact-match">Exact match</label>
+            </p>
+
+            <p>
+                <label for="price-from" style="display: inline-block; width: 80px;">Price</label>
+                <input type="number" id="price-from" name="price_from" placeholder="From...">
+                <input type="number" id="price-to" name="price_to" placeholder="To..." aria-label="Price to">
+            </p>
+
+            <p>
+                <label for="category" style="display: inline-block; width: 80px;">Category</label>
+                <select id="category" name="category">
+                    <option value="it">Information Technology</option>
+                    <option value="math">Mathematics</option>
+                    <option value="science">Science</option>
+                    <option value="business">Business</option>
+                </select>
+            </p>
+
+            <p>
+                <span style="display: inline-block; width: 80px;">Sort order</span>
+                <input type="radio" id="sort-az" name="sort_order" value="az" checked>
+                <label for="sort-az">A-Z</label>
+                <input type="radio" id="sort-za" name="sort_order" value="za">
+                <label for="sort-za">Z-A</label>
+            </p>
+
+            <p style="text-align: right; margin-bottom: 5px;">
+                <button type="submit">Search</button>
+            </p>
+        </fieldset>
+    </form>
+
+    <!-- Danh sách hiển thị sách đã được căn giữa và chèn chữ vào trong bìa -->
+    <ul class="book-list">
+        <li>
+            <div class="book-cover">
+                <img src="images/book1.png" alt="HTML & CSS">
+                <span class="cover-title">HTML &amp; CSS</span>
+            </div>
+            <div class="book-caption">HTML &amp; CSS</div>
+        </li>
+        <li>
+            <div class="book-cover">
+                <img src="images/book2.png" alt="JavaScript">
+                <span class="cover-title">JavaScript</span>
+            </div>
+            <div class="book-caption">JavaScript</div>
+        </li>
+        <li>
+            <div class="book-cover">
+                <img src="images/book3.png" alt="Java Programming">
+                <span class="cover-title">Java Programming</span>
+            </div>
+            <div class="book-caption">Java Programming</div>
+        </li>
+        <li>
+            <div class="book-cover">
+                <img src="images/book4.png" alt="Software Testing">
+                <span class="cover-title">Software Testing</span>
+            </div>
+            <div class="book-caption">Software Testing</div>
+        </li>
+        <li>
+            <div class="book-cover">
+                <img src="images/book5.png" alt="Discrete Math">
+                <span class="cover-title">Discrete Math</span>
+            </div>
+            <div class="book-caption">Discrete Math</div>
+        </li>
+        <li>
+            <div class="book-cover">
+                <img src="images/book6.png" alt="Python">
+                <span class="cover-title">Python</span>
+            </div>
+            <div class="book-caption">Python</div>
+        </li>
+        <li>
+            <div class="book-cover">
+                <img src="images/book7.png" alt="Databases">
+                <span class="cover-title">Databases</span>
+            </div>
+            <div class="book-caption">Databases</div>
+        </li>
+        <li>
+            <div class="book-cover">
+                <img src="images/book8.png" alt="Networking">
+                <span class="cover-title">Networking</span>
+            </div>
+            <div class="book-caption">Networking</div>
+        </li>
+        <li>
+            <div class="book-cover">
+                <img src="images/book9.png" alt="AI Basics">
+                <span class="cover-title">AI Basics</span>
+            </div>
+            <div class="book-caption">AI Basics</div>
+        </li>
+        <li>
+            <div class="book-cover">
+                <img src="images/book10.png" alt="Internet of Things">
+                <span class="cover-title">Internet of Things</span>
+            </div>
+            <div class="book-caption">Internet of Things</div>
+        </li>
+    </ul>
+
+</body>
+</html>
