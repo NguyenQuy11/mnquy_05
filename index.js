@@ -2,7 +2,8 @@
     "use strict";
 
     var cartKey = "tsqh-shop-cart";
-    var userKey = "tsqh-shop-user";
+    var apiBaseUrl = "http://localhost:3000/api";
+    var tokenKey = "tsqh-shop-token";
     var cart = loadCart();
     var cartPanel = document.getElementById("cart-panel");
     var cartBackdrop = document.getElementById("cart-backdrop");
@@ -31,6 +32,61 @@
 
     function formatPrice(price) {
         return price.toLocaleString("vi-VN") + "đ";
+    }
+
+    async function apiRequest(path, options) {
+        var requestOptions = options || {};
+        requestOptions.headers = Object.assign(
+            { "Content-Type": "application/json" },
+            requestOptions.headers || {}
+        );
+        var token = sessionStorage.getItem(tokenKey);
+        if (token) {
+            requestOptions.headers.Authorization = "Bearer " + token;
+        }
+
+        var response = await fetch(apiBaseUrl + path, requestOptions);
+        var payload = await response.json();
+        if (!response.ok) {
+            throw new Error(payload.message || "Không thể kết nối máy chủ.");
+        }
+        return payload;
+    }
+
+    function showAuthMessage(element, message, isError) {
+        element.textContent = message;
+        element.className = "form-message " + (isError ? "is-error" : "is-success");
+    }
+
+    function renderAccount(user) {
+        document.getElementById("account-panel").hidden = !user;
+        document.getElementById("login-form").hidden = Boolean(user);
+        document.getElementById("register-form").hidden = Boolean(user);
+        if (!user) {
+            return;
+        }
+
+        document.getElementById("account-username").textContent = user.username;
+        document.getElementById("account-email").textContent = user.email;
+        document.getElementById("account-phone").textContent = user.phone;
+        var orders = document.getElementById("account-orders");
+        orders.innerHTML = user.orders.length
+            ? user.orders.map(function (order) {
+                return "<p>" + escapeHtml(order.id) + " - " + escapeHtml(order.status) + "</p>";
+            }).join("")
+            : "<p>Chưa có đơn hàng.</p>";
+    }
+
+    async function loadAccount() {
+        if (!sessionStorage.getItem(tokenKey)) {
+            return;
+        }
+        try {
+            var result = await apiRequest("/auth/me");
+            renderAccount(result.user);
+        } catch (error) {
+            sessionStorage.removeItem(tokenKey);
+        }
     }
 
     function renderCart() {
@@ -173,22 +229,66 @@
         emptyMessage.hidden = visibleCards !== 0;
     });
 
-    document.getElementById("login-form").addEventListener("submit", function (event) {
+    document.getElementById("login-form").addEventListener("submit", async function (event) {
         event.preventDefault();
-        var username = document.getElementById("login-username").value.trim();
+        var identifier = document.getElementById("login-username").value.trim();
         var password = document.getElementById("login-password").value;
         var message = document.getElementById("login-message");
 
-        if (username.length < 3 || password.length < 6) {
-            message.textContent = "Tên đăng nhập cần ít nhất 3 ký tự và mật khẩu ít nhất 6 ký tự.";
-            message.className = "form-message is-error";
+        try {
+            var result = await apiRequest("/auth/login", {
+                method: "POST",
+                body: JSON.stringify({ identifier: identifier, password: password })
+            });
+            sessionStorage.setItem(tokenKey, result.token);
+            renderAccount(result.user);
+            showAuthMessage(message, "Đăng nhập thành công.", false);
+            this.reset();
+        } catch (error) {
+            showAuthMessage(message, error.message, true);
+        }
+    });
+
+    document.getElementById("register-form").addEventListener("submit", async function (event) {
+        event.preventDefault();
+        var password = document.getElementById("register-password").value;
+        var confirmPassword = document.getElementById("register-confirm-password").value;
+        var message = document.getElementById("register-message");
+
+        if (password !== confirmPassword) {
+            showAuthMessage(message, "Mật khẩu nhập lại không khớp.", true);
             return;
         }
 
-        localStorage.setItem(userKey, username);
-        message.textContent = "Đăng nhập demo thành công với tài khoản " + username + ".";
-        message.className = "form-message is-success";
-        this.reset();
+        try {
+            var result = await apiRequest("/auth/register", {
+                method: "POST",
+                body: JSON.stringify({
+                    username: document.getElementById("register-username").value.trim(),
+                    email: document.getElementById("register-email").value.trim(),
+                    phone: document.getElementById("register-phone").value.trim(),
+                    password: password
+                })
+            });
+            sessionStorage.setItem(tokenKey, result.token);
+            renderAccount(result.user);
+            showAuthMessage(message, "Đăng ký thành công.", false);
+            this.reset();
+        } catch (error) {
+            showAuthMessage(message, error.message, true);
+        }
+    });
+
+    document.getElementById("logout-button").addEventListener("click", async function () {
+        try {
+            await apiRequest("/auth/logout", { method: "POST" });
+        } catch (error) {
+            console.error("Không thể thông báo đăng xuất cho máy chủ.", error);
+        } finally {
+            sessionStorage.removeItem(tokenKey);
+            renderAccount(null);
+            window.location.hash = "login";
+        }
     });
 
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
@@ -205,4 +305,5 @@
     });
 
     renderCart();
+    loadAccount();
 }());

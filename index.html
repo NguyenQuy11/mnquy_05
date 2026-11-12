@@ -841,6 +841,31 @@
                 <button type="submit" class="btn-primary">Đăng Nhập</button>
                 <p class="form-message" id="login-message" role="status"></p>
             </form>
+
+            <h3 class="auth-subtitle">Tạo tài khoản mới</h3>
+            <form class="contact-form" id="register-form">
+                <input type="text" id="register-username" placeholder="Tên đăng nhập" autocomplete="username" required>
+                <input type="email" id="register-email" placeholder="Email" autocomplete="email" required>
+                <input type="tel" id="register-phone" placeholder="Số điện thoại" autocomplete="tel" required>
+                <input type="password" id="register-password" placeholder="Mật khẩu (ít nhất 8 ký tự)" autocomplete="new-password" required>
+                <input type="password" id="register-confirm-password" placeholder="Nhập lại mật khẩu" autocomplete="new-password" required>
+                <button type="submit" class="btn-primary">Đăng Ký</button>
+                <p class="form-message" id="register-message" role="status"></p>
+            </form>
+
+            <div class="account-panel" id="account-panel" hidden>
+                <div class="account-panel__header">
+                    <h3>Tài khoản cá nhân</h3>
+                    <button type="button" class="btn-login" id="logout-button">Đăng xuất</button>
+                </div>
+                <p><strong>Tên đăng nhập:</strong> <span id="account-username"></span></p>
+                <p><strong>Email:</strong> <span id="account-email"></span></p>
+                <p><strong>Số điện thoại:</strong> <span id="account-phone"></span></p>
+                <h4>Lịch sử đơn hàng</h4>
+                <div id="account-orders">
+                    <p>Chưa có đơn hàng.</p>
+                </div>
+            </div>
         </div>
     </section>
 

@@ -410,6 +410,47 @@ body {
     color: var(--success);
 }
 
+.auth-subtitle {
+    margin: 30px 0 14px;
+    color: var(--primary-dark);
+}
+
+.account-panel {
+    max-width: 620px;
+    margin-top: 24px;
+    padding: 22px;
+    background: #fff7ed;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+}
+
+.account-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.account-panel__header h3 {
+    color: var(--primary-dark);
+}
+
+.account-panel p {
+    margin: 7px 0;
+    color: var(--muted);
+}
+
+.account-panel h4 {
+    margin-top: 18px;
+    color: var(--ink);
+}
+
+.account-panel[hidden],
+.contact-form[hidden] {
+    display: none;
+}
+
 .cart-backdrop {
     position: fixed;
     inset: 0;
