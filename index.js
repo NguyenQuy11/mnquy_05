@@ -2,8 +2,8 @@
     "use strict";
 
     var cartKey = "tsqh-shop-cart";
-    var apiBaseUrl = "http://localhost:3000/api";
-    var tokenKey = "tsqh-shop-token";
+    var usersKey = "tsqh-shop-users";
+    var currentUserKey = "tsqh-shop-current-user";
     var cart = loadCart();
     var cartPanel = document.getElementById("cart-panel");
     var cartBackdrop = document.getElementById("cart-backdrop");
@@ -36,23 +36,26 @@
         return price.toLocaleString("vi-VN") + "đ";
     }
 
-    async function apiRequest(path, options) {
-        var requestOptions = options || {};
-        requestOptions.headers = Object.assign(
-            { "Content-Type": "application/json" },
-            requestOptions.headers || {}
-        );
-        var token = sessionStorage.getItem(tokenKey);
-        if (token) {
-            requestOptions.headers.Authorization = "Bearer " + token;
+    function loadUsers() {
+        try {
+            var users = JSON.parse(localStorage.getItem(usersKey));
+            return Array.isArray(users) ? users : [];
+        } catch (error) {
+            console.warn("Không thể đọc dữ liệu tài khoản.", error);
+            return [];
         }
+    }
 
-        var response = await fetch(apiBaseUrl + path, requestOptions);
-        var payload = await response.json();
-        if (!response.ok) {
-            throw new Error(payload.message || "Không thể kết nối máy chủ.");
-        }
-        return payload;
+    function saveUsers(users) {
+        localStorage.setItem(usersKey, JSON.stringify(users));
+    }
+
+    async function hashPassword(password) {
+        var data = new TextEncoder().encode(password);
+        var hash = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(hash)).map(function (byte) {
+            return byte.toString(16).padStart(2, "0");
+        }).join("");
     }
 
     function showAuthMessage(element, message, isError) {
@@ -60,10 +63,11 @@
         element.className = "form-message " + (isError ? "is-error" : "is-success");
     }
 
-    function getApiError(error) {
-        return error instanceof TypeError
-            ? "Không thể kết nối máy chủ. Hãy mở cửa sổ lệnh tại C:\\mnquy_05 và chạy: npm start"
-            : error.message;
+    function getCurrentUser() {
+        var username = localStorage.getItem(currentUserKey);
+        return loadUsers().find(function (user) {
+            return user.username === username;
+        }) || null;
     }
 
     function renderAccount(user) {
@@ -86,15 +90,7 @@
     }
 
     async function loadAccount() {
-        if (!sessionStorage.getItem(tokenKey)) {
-            return;
-        }
-        try {
-            var result = await apiRequest("/auth/me");
-            renderAccount(result.user);
-        } catch (error) {
-            sessionStorage.removeItem(tokenKey);
-        }
+        renderAccount(getCurrentUser());
     }
 
     function renderCart() {
@@ -179,20 +175,12 @@
 
     async function handleBuyClick(button) {
         var card = button.closest(".product-card");
-        var token = sessionStorage.getItem(tokenKey);
-        if (!token) {
+        if (!getCurrentUser()) {
             goToLogin("Vui lòng đăng nhập trước khi mua account.");
             return;
         }
 
-        try {
-            await apiRequest("/auth/me");
-            showPurchaseAccount(card);
-        } catch (error) {
-            sessionStorage.removeItem(tokenKey);
-            renderAccount(null);
-            goToLogin("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
-        }
+        showPurchaseAccount(card);
     }
 
     function addToCart(button) {
@@ -291,61 +279,79 @@
         var identifier = document.getElementById("login-username").value.trim();
         var password = document.getElementById("login-password").value;
         var message = document.getElementById("login-message");
+        var users = loadUsers();
+        var user = users.find(function (candidate) {
+            return candidate.username === identifier.toLowerCase() || candidate.email === identifier.toLowerCase();
+        });
 
-        try {
-            var result = await apiRequest("/auth/login", {
-                method: "POST",
-                body: JSON.stringify({ identifier: identifier, password: password })
-            });
-            sessionStorage.setItem(tokenKey, result.token);
-            renderAccount(result.user);
-            showAuthMessage(message, "Đăng nhập thành công.", false);
-            this.reset();
-        } catch (error) {
-            showAuthMessage(message, getApiError(error), true);
+        if (!user || user.passwordHash !== await hashPassword(password)) {
+            showAuthMessage(message, "Tên đăng nhập/email hoặc mật khẩu không đúng.", true);
+            return;
         }
+
+        localStorage.setItem(currentUserKey, user.username);
+        renderAccount(user);
+        showAuthMessage(message, "Đăng nhập thành công.", false);
+        this.reset();
     });
 
     document.getElementById("register-form").addEventListener("submit", async function (event) {
         event.preventDefault();
+        var username = document.getElementById("register-username").value.trim().toLowerCase();
+        var email = document.getElementById("register-email").value.trim().toLowerCase();
+        var phone = document.getElementById("register-phone").value.trim();
         var password = document.getElementById("register-password").value;
         var confirmPassword = document.getElementById("register-confirm-password").value;
         var message = document.getElementById("register-message");
+        var users = loadUsers();
 
+        if (!/^[a-zA-Z0-9_.-]{3,30}$/.test(username)) {
+            showAuthMessage(message, "Tên đăng nhập phải dài 3-30 ký tự.", true);
+            return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showAuthMessage(message, "Email không hợp lệ.", true);
+            return;
+        }
+        if (!/^[0-9+()\s.-]{8,20}$/.test(phone)) {
+            showAuthMessage(message, "Số điện thoại không hợp lệ.", true);
+            return;
+        }
+        if (password.length < 8) {
+            showAuthMessage(message, "Mật khẩu phải có ít nhất 8 ký tự.", true);
+            return;
+        }
         if (password !== confirmPassword) {
             showAuthMessage(message, "Mật khẩu nhập lại không khớp.", true);
             return;
         }
-
-        try {
-            var result = await apiRequest("/auth/register", {
-                method: "POST",
-                body: JSON.stringify({
-                    username: document.getElementById("register-username").value.trim(),
-                    email: document.getElementById("register-email").value.trim(),
-                    phone: document.getElementById("register-phone").value.trim(),
-                    password: password
-                })
-            });
-            sessionStorage.setItem(tokenKey, result.token);
-            renderAccount(result.user);
-            showAuthMessage(message, "Đăng ký thành công.", false);
-            this.reset();
-        } catch (error) {
-            showAuthMessage(message, getApiError(error), true);
+        if (users.some(function (user) {
+            return user.username === username || user.email === email;
+        })) {
+            showAuthMessage(message, "Tên đăng nhập hoặc email đã được sử dụng.", true);
+            return;
         }
+
+        var newUser = {
+            id: Date.now().toString(),
+            username: username,
+            email: email,
+            phone: phone,
+            passwordHash: await hashPassword(password),
+            orders: []
+        };
+        users.push(newUser);
+        saveUsers(users);
+        localStorage.setItem(currentUserKey, newUser.username);
+        renderAccount(newUser);
+        showAuthMessage(message, "Đăng ký thành công.", false);
+        this.reset();
     });
 
-    document.getElementById("logout-button").addEventListener("click", async function () {
-        try {
-            await apiRequest("/auth/logout", { method: "POST" });
-        } catch (error) {
-            console.error("Không thể thông báo đăng xuất cho máy chủ.", error);
-        } finally {
-            sessionStorage.removeItem(tokenKey);
-            renderAccount(null);
-            window.location.hash = "login";
-        }
+    document.getElementById("logout-button").addEventListener("click", function () {
+        localStorage.removeItem(currentUserKey);
+        renderAccount(null);
+        window.location.hash = "login";
     });
 
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
