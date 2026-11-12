@@ -10,6 +10,8 @@
     var cartItems = document.getElementById("cart-items");
     var cartCount = document.getElementById("cart-count");
     var cartTotal = document.getElementById("cart-total");
+    var purchaseAccount = document.getElementById("purchase-account");
+    var purchaseAccountDetails = document.getElementById("purchase-account-details");
 
     function loadCart() {
         try {
@@ -141,6 +143,52 @@
         document.body.classList.remove("cart-is-open");
     }
 
+    function showPurchaseAccount(card) {
+        var title = card.querySelector("h3").textContent.trim();
+        var details = card.querySelector("ul");
+        var price = card.querySelector("strong");
+        purchaseAccountDetails.innerHTML =
+            "<h3>" + escapeHtml(title) + "</h3>" +
+            (details ? details.outerHTML : "<p>Thông tin chi tiết account sẽ được shop xác nhận khi mua.</p>") +
+            (price ? "<strong class=\"purchase-account__price\">" + escapeHtml(price.textContent) + "</strong>" : "");
+        purchaseAccount.hidden = false;
+        purchaseAccount.classList.add("is-open");
+        purchaseAccount.setAttribute("aria-hidden", "false");
+        document.body.classList.add("cart-is-open");
+    }
+
+    function closePurchaseAccount() {
+        purchaseAccount.hidden = true;
+        purchaseAccount.classList.remove("is-open");
+        purchaseAccount.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("cart-is-open");
+    }
+
+    function goToLogin(message) {
+        var loginMessage = document.getElementById("login-message");
+        showAuthMessage(loginMessage, message, true);
+        window.location.hash = "login";
+        document.getElementById("login").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    async function handleBuyClick(button) {
+        var card = button.closest(".product-card");
+        var token = sessionStorage.getItem(tokenKey);
+        if (!token) {
+            goToLogin("Vui lòng đăng nhập trước khi mua account.");
+            return;
+        }
+
+        try {
+            await apiRequest("/auth/me");
+            showPurchaseAccount(card);
+        } catch (error) {
+            sessionStorage.removeItem(tokenKey);
+            renderAccount(null);
+            goToLogin("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
+        }
+    }
+
     function addToCart(button) {
         var card = button.closest(".product-card");
         var nameElement = card && card.querySelector("h3");
@@ -186,19 +234,22 @@
             return;
         }
 
-        var buyButton = event.target.closest(".acc-list .btn-buy");
+        var buyButton = event.target.closest(".btn-buy");
         if (buyButton) {
             event.preventDefault();
-            addToCart(buyButton);
+            handleBuyClick(buyButton);
         }
     });
 
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
             closeCart();
+            closePurchaseAccount();
         }
     });
 
+    document.getElementById("purchase-account-close").addEventListener("click", closePurchaseAccount);
+    document.getElementById("purchase-contact").addEventListener("click", closePurchaseAccount);
     document.getElementById("cart-checkout").addEventListener("click", function () {
         closeCart();
         window.location.hash = "contact";
