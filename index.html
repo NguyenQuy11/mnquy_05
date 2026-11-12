@@ -36,6 +36,9 @@
             </nav>
             <a href="#login" class="btn-login">Nạp tiền</a>
             <a href="#login" class="btn-login">Đăng nhập</a>
+            <button type="button" class="cart-button" id="cart-toggle" aria-label="Mở giỏ hàng">
+                Giỏ hàng <span id="cart-count">0</span>
+            </button>
         </div>
     </header>
 
@@ -53,6 +56,10 @@
     <section id="products" class="products">
         <div class="container">
             <h2 class="section-title">Danh Sách Sản Phẩm</h2>
+            <label class="product-search">
+                <span>Tìm sản phẩm</span>
+                <input type="search" id="product-search" placeholder="Nhập tên game hoặc sản phẩm..." autocomplete="off">
+            </label>
 
             <!-- Sử dụng CSS Grid cho danh sách sản phẩm -->
             <div class="product-grid">
@@ -93,7 +100,7 @@
                     </div>
                 </div>
 
-                <!-- Sản phẩm 4 -->
+
                 <div class="product-card">
                     <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_T_i_m__Qu_c_d_n_shopliqi_comx690x690x4.webp" alt="Liên Quân Mobile">
                     <div class="card-body">
@@ -828,10 +835,11 @@
             <h2 class="section-title">Đăng Nhập</h2>
             <p>Đăng nhập vào tài khoản TSQH SHOP của bạn.</p>
 
-            <form class="contact-form">
-                <input type="text" placeholder="Tên đăng nhập" required>
-                <input type="password" placeholder="Mật khẩu" required>
+            <form class="contact-form" id="login-form">
+                <input type="text" id="login-username" placeholder="Tên đăng nhập" autocomplete="username" required>
+                <input type="password" id="login-password" placeholder="Mật khẩu" autocomplete="current-password" required>
                 <button type="submit" class="btn-primary">Đăng Nhập</button>
+                <p class="form-message" id="login-message" role="status"></p>
             </form>
         </div>
     </section>
@@ -890,5 +898,21 @@
         </div>
     </footer>
 
+    <aside class="cart-panel" id="cart-panel" aria-hidden="true">
+        <div class="cart-panel__header">
+            <h2>Giỏ hàng</h2>
+            <button type="button" id="cart-close" aria-label="Đóng giỏ hàng">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <p class="cart-empty">Giỏ hàng đang trống.</p>
+        </div>
+        <div class="cart-panel__footer">
+            <strong>Tạm tính: <span id="cart-total">0đ</span></strong>
+            <button type="button" class="btn-primary" id="cart-checkout">Liên hệ để mua</button>
+        </div>
+    </aside>
+    <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+
+    <script src="index.js"></script>
 </body>
 </html>
