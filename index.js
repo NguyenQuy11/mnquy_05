@@ -60,6 +60,12 @@
         element.className = "form-message " + (isError ? "is-error" : "is-success");
     }
 
+    function getApiError(error) {
+        return error instanceof TypeError
+            ? "Không thể kết nối máy chủ. Hãy mở cửa sổ lệnh tại C:\\mnquy_05 và chạy: npm start"
+            : error.message;
+    }
+
     function renderAccount(user) {
         document.getElementById("account-panel").hidden = !user;
         document.getElementById("login-form").hidden = Boolean(user);
@@ -296,7 +302,7 @@
             showAuthMessage(message, "Đăng nhập thành công.", false);
             this.reset();
         } catch (error) {
-            showAuthMessage(message, error.message, true);
+            showAuthMessage(message, getApiError(error), true);
         }
     });
 
@@ -326,7 +332,7 @@
             showAuthMessage(message, "Đăng ký thành công.", false);
             this.reset();
         } catch (error) {
-            showAuthMessage(message, error.message, true);
+            showAuthMessage(message, getApiError(error), true);
         }
     });
 
