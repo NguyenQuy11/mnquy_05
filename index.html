@@ -6,28 +6,43 @@
     <title>TSQH SHOP - Sàn Giao Dịch Tài Khoản Game</title>
     <!-- Liên kết đến file CSS riêng -->
     <link rel="stylesheet" href="shopaccount.css">
+
+    
+    <style>
+        section.acc-list {
+            display: none;
+        }
+        section.acc-list:target {
+            display: block;
+        }
+    </style>    
 </head>
 <body>
 
-    <!-- 1. HEADER (Thanh điều hướng) -->
+    
     <header class="header">
         <div class="container header-container">
-            <a href="#" class="logo">🎮 TSQH SHOP</a>
+            <a href="/" class="header-brand">
+                <span class="brand">
+                    <img src="./images/logotsqh.png" alt="TSQH SHOP" class="brand__logo" draggable="false">
+                    <span class="brand__name">TSQH SHOP</span>
+                </span>
+            </a>
             <nav class="nav-links">
                 <a href="#hero">Trang chủ</a>
                 <a href="#products">Sản phẩm</a>
                 <a href="#about">Về chúng tôi</a>
                 <a href="#contact">Liên hệ</a>
             </nav>
-            <a href="#naptien" class="btn-login">Nạp tiền</a>
-            <a href="#contact" class="btn-login">Đăng nhập</a>
+            <a href="#login" class="btn-login">Nạp tiền</a>
+            <a href="#login" class="btn-login">Đăng nhập</a>
         </div>
     </header>
 
-    <!-- 2. HERO (Khu vực banner mở đầu) -->
+   
     <section id="hero" class="hero">
         <div class="container hero-content">
-            <h1>Thế Giới Tài Khoản Game Uy Tín & Giá Rẻ</h1>
+            <h1>Thế Giới Tài Khoản Game Uy Tín &amp; Giá Rẻ</h1>
             <p>⚡ TSQH – Uy Tín Tạo Niềm Tin, Chất Lượng Khẳng Định Đẳng Cấp! ⚡</p>
             <p>🔥 Acc Chất Giá Tốt, Dịch Vụ Hàng Đầu!</p>
             <p>👑 Mua Sắm An Tâm, Chiến Game Đỉnh Cao!</p>
@@ -36,48 +51,196 @@
         </div>
     </section>
 
-    <!-- 3. PRODUCTS / SERVICES (Sản phẩm / Dịch vụ) -->
+
     <section id="products" class="products">
         <div class="container">
-            <h2 class="section-title">Tài Khoản Nổi Bật</h2>
-            
+            <h2 class="section-title">Danh Sách Sản Phẩm</h2>
+
             <!-- Sử dụng CSS Grid cho danh sách sản phẩm -->
             <div class="product-grid">
-                
+
                 <!-- Sản phẩm 1 -->
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500" alt="Game Valorant">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_LQ_t__ch_n_shopliqi_com_x690x690x4.webp" alt="Liên Quân Mobile">
                     <div class="card-body">
-                        <h3>Acc Valorant #1024</h3>
-                        <p>Rank: Bất Tử | 35 Skin VIP</p>
+                        <h3>Acc Liên Quân Mobile</h3>
+
                         <div class="price-box">
-                            <span class="price">450.000đ</span>
-                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                            <a href="#lienquan" class="btn-buy">Mua Ngay</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Sản phẩm 2 -->
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500" alt="Game Liên Minh">
+                    <img src="https://shopt1.com/shopt1-assets/lien-minh-v2.webp" alt="Liên Minh Huyền Thoại">
                     <div class="card-body">
-                        <h3>Acc LMHT #2050</h3>
-                        <p>Rank: Kim Cương | 120 Tướng</p>
+                        <h3>Acc Liên Minh Huyền Thoại</h3>
+
                         <div class="price-box">
-                            <span class="price">300.000đ</span>
-                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                            <a href="#lienminh" class="btn-buy">Mua Ngay</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Sản phẩm 3 -->
                 <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1612287233202-b51b36616efc?w=500" alt="Game Genshin">
+                    <img src="https://shopt1.com/shopt1-assets/tft-choice-v2.webp" alt="TFT (Đấu Trường Chân Lý)">
                     <div class="card-body">
-                        <h3>Acc Genshin #3090</h3>
-                        <p>AR 55 | 5 Nhân Vật 5 Sao</p>
+                        <h3>Acc TFT</h3>
+
                         <div class="price-box">
-                            <span class="price">550.000đ</span>
+                            <a href="#tft" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 4 -->
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_T_i_m__Qu_c_d_n_shopliqi_comx690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Quân</h3>
+
+                        <div class="price-box">
+                            <a href="#tuimu-lienquan" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 5 -->
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxVNnsdBe9pdK7yI6dMxjCEQk0p4ehUTw0f0zvsy7ppw&amp;s=10" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Minh Siêu Cấp</h3>
+
+                        <div class="price-box">
+                            <a href="#tuimu-lienminh" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 6 -->
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-random-9k.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Túi Mù TFT</h3>
+
+                        <div class="price-box">
+                            <a href="#tuimu-tft" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="lienquan" class="products acc-list">
+        <div class="container">
+            <h2 class="section-title">Acc Liên Quân Mobile</h2>
+            <p>Tài khoản Liên Quân Mobile có rank, tướng và trang phục rõ ràng.</p>
+            <p><a href="#products">← Quay lại danh sách game</a></p>
+
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_LQ_t__ch_n_shopliqi_com_x690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Acc Liên Quân Mobile – Cao Thủ</h3>
+                        <ul>
+                            <li>Rank: Cao Thủ</li>
+                            <li>98 tướng, 145 trang phục</li>
+                            <li>Có 5 skin SS+</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>1.250.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_LQ_t__ch_n_shopliqi_com_x690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Acc Liên Quân Mobile – Tinh Anh</h3>
+                        <ul>
+                            <li>Rank: Tinh Anh V</li>
+                            <li>85 tướng, 120 trang phục</li>
+                            <li>Có 3 skin SS</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>790.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_LQ_t__ch_n_shopliqi_com_x690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Acc Liên Quân Mobile – Kim Cương</h3>
+                        <ul>
+                            <li>Rank: Kim Cương I</li>
+                            <li>72 tướng, 96 trang phục</li>
+                            <li>Có 2 skin S+</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>450.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_LQ_t__ch_n_shopliqi_com_x690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Acc Liên Quân Mobile – Bạch Kim</h3>
+                        <ul>
+                            <li>Rank: Bạch Kim III</li>
+                            <li>60 tướng, 70 trang phục</li>
+                            <li>Nhiều tướng mạnh</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>280.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_LQ_t__ch_n_shopliqi_com_x690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Acc Liên Quân Mobile – Vàng</h3>
+                        <ul>
+                            <li>Rank: Vàng II</li>
+                            <li>48 tướng, 52 trang phục</li>
+                            <li>Đủ tướng đi rừng, đường giữa</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>150.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_LQ_t__ch_n_shopliqi_com_x690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Acc Liên Quân Mobile – Khởi Đầu</h3>
+                        <ul>
+                            <li>Rank: Bạc</li>
+                            <li>35 tướng, 30 trang phục</li>
+                            <li>Phù hợp người mới chơi</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>79.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
                             <a href="#contact" class="btn-buy">Mua Ngay</a>
                         </div>
                     </div>
@@ -87,11 +250,599 @@
         </div>
     </section>
 
+    <!-- 3.2 DANH SÁCH: Acc Liên Minh Huyền Thoại -->
+    <section id="lienminh" class="products acc-list">
+        <div class="container">
+            <h2 class="section-title">Acc Liên Minh Huyền Thoại</h2>
+            <p>Tài khoản Liên Minh Huyền Thoại máy chủ Việt Nam, có đủ thông tin tướng và trang phục.</p>
+            <p><a href="#products">← Quay lại danh sách game</a></p>
+
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/lien-minh-v2.webp" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Acc Liên Minh Huyền Thoại – Kim Cương</h3>
+                        <ul>
+                            <li>Rank: Kim Cương IV</li>
+                            <li>150 tướng, 310 trang phục</li>
+                            <li>Có 3 trang phục Tối Thượng</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>1.800.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/lien-minh-v2.webp" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Acc Liên Minh Huyền Thoại – Lục Bảo</h3>
+                        <ul>
+                            <li>Rank: Lục Bảo II</li>
+                            <li>140 tướng, 220 trang phục</li>
+                            <li>Có 2 trang phục Huyền Thoại</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>1.100.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/lien-minh-v2.webp" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Acc Liên Minh Huyền Thoại – Bạch Kim</h3>
+                        <ul>
+                            <li>Rank: Bạch Kim III</li>
+                            <li>125 tướng, 160 trang phục</li>
+                            <li>Nhiều trang phục Sử Thi</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>650.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/lien-minh-v2.webp" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Acc Liên Minh Huyền Thoại – Vàng</h3>
+                        <ul>
+                            <li>Rank: Vàng I</li>
+                            <li>110 tướng, 95 trang phục</li>
+                            <li>Máy chủ Việt Nam</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>320.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/lien-minh-v2.webp" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Acc Liên Minh Huyền Thoại – Bạc</h3>
+                        <ul>
+                            <li>Rank: Bạc II</li>
+                            <li>95 tướng, 60 trang phục</li>
+                            <li>Máy chủ Việt Nam</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>180.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/lien-minh-v2.webp" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Acc Liên Minh Huyền Thoại – Cấp 30</h3>
+                        <ul>
+                            <li>Cấp 30, chưa xếp hạng</li>
+                            <li>40 tướng, 10 trang phục</li>
+                            <li>Phù hợp để leo rank mới</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>59.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="tft" class="products acc-list">
+        <div class="container">
+            <h2 class="section-title">Acc TFT</h2>
+            <p>Tài khoản TFT (Đấu Trường Chân Lý) có rank, Linh Thú và Sân Đấu.</p>
+            <p><a href="#products">← Quay lại danh sách game</a></p>
+
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-choice-v2.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Acc TFT – Kim Cương</h3>
+                        <ul>
+                            <li>Rank: Kim Cương II</li>
+                            <li>25 Linh Thú, 12 Sân Đấu</li>
+                            <li>Có Linh Thú Huyền Thoại</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>950.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-choice-v2.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Acc TFT – Bạch Kim</h3>
+                        <ul>
+                            <li>Rank: Bạch Kim I</li>
+                            <li>18 Linh Thú, 9 Sân Đấu</li>
+                            <li>Nhiều hiệu ứng đẹp</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>620.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-choice-v2.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Acc TFT – Vàng</h3>
+                        <ul>
+                            <li>Rank: Vàng III</li>
+                            <li>12 Linh Thú, 6 Sân Đấu</li>
+                            <li>Đủ bộ Sân Đấu cơ bản</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>350.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-choice-v2.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Acc TFT – Bạc</h3>
+                        <ul>
+                            <li>Rank: Bạc I</li>
+                            <li>8 Linh Thú, 4 Sân Đấu</li>
+                            <li>Tài khoản sạch</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>190.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-choice-v2.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Acc TFT – Đủ Linh Thú Hiếm</h3>
+                        <ul>
+                            <li>Rank: Vàng II</li>
+                            <li>30 Linh Thú, 10 Sân Đấu</li>
+                            <li>Nhiều Linh Thú hiếm</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>480.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-choice-v2.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Acc TFT – Mới Chơi</h3>
+                        <ul>
+                            <li>Chưa xếp hạng</li>
+                            <li>3 Linh Thú, 2 Sân Đấu</li>
+                            <li>Phù hợp người mới chơi</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>49.000đ</strong>
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="tuimu-lienquan" class="products acc-list">
+        <div class="container">
+            <h2 class="section-title">Túi Mù Liên Quân</h2>
+            <p>Mua túi mù nhận ngẫu nhiên 1 tài khoản Liên Quân Mobile, đảm bảo mức tối thiểu ghi trên từng gói.</p>
+            <p><a href="#products">← Quay lại danh sách game</a></p>
+
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_T_i_m__Qu_c_d_n_shopliqi_comx690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Quân – Gói Đồng</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Quân Mobile</li>
+                            <li>Đảm bảo từ 20 tướng</li>
+                            <li>Đảm bảo từ 15 trang phục</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>99.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_T_i_m__Qu_c_d_n_shopliqi_comx690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Quân – Gói Bạc</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Quân Mobile</li>
+                            <li>Đảm bảo từ 35 tướng</li>
+                            <li>Đảm bảo từ 30 trang phục</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>99.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_T_i_m__Qu_c_d_n_shopliqi_comx690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Quân – Gói Vàng</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Quân Mobile</li>
+                            <li>Đảm bảo từ 50 tướng</li>
+                            <li>Đảm bảo có 1 skin S+</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>99.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_T_i_m__Qu_c_d_n_shopliqi_comx690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Quân – Gói Bạch Kim</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Quân Mobile</li>
+                            <li>Đảm bảo từ 70 tướng</li>
+                            <li>Đảm bảo có 3 skin S+</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>99.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_T_i_m__Qu_c_d_n_shopliqi_comx690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Quân – Gói Kim Cương</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Quân Mobile</li>
+                            <li>Đảm bảo từ 90 tướng</li>
+                            <li>Đảm bảo có 1 skin SS</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>99.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopliqi.com/Data/ResizeImage/images/adv/thumb_T_i_m__Qu_c_d_n_shopliqi_comx690x690x4.webp" alt="Liên Quân Mobile">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Quân – Gói Cao Thủ</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Quân Mobile</li>
+                            <li>Đảm bảo từ 100 tướng</li>
+                            <li>Đảm bảo có 1 skin SS+</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>99.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.5 DANH SÁCH: Túi Mù Liên Minh Siêu Cấp -->
+    <section id="tuimu-lienminh" class="products acc-list">
+        <div class="container">
+            <h2 class="section-title">Túi Mù Liên Minh Siêu Cấp</h2>
+            <p>Mua túi mù nhận ngẫu nhiên 1 tài khoản Liên Minh Huyền Thoại, đảm bảo mức tối thiểu ghi trên từng gói.</p>
+            <p><a href="#products">← Quay lại danh sách game</a></p>
+
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxVNnsdBe9pdK7yI6dMxjCEQk0p4ehUTw0f0zvsy7ppw&amp;s=10" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Minh – Gói Bạc</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Minh Huyền Thoại</li>
+                            <li>Đảm bảo từ 40 tướng</li>
+                            <li>Đảm bảo từ 10 trang phục</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>129.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxVNnsdBe9pdK7yI6dMxjCEQk0p4ehUTw0f0zvsy7ppw&amp;s=10" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Minh – Gói Vàng</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Minh Huyền Thoại</li>
+                            <li>Đảm bảo từ 70 tướng</li>
+                            <li>Đảm bảo từ 30 trang phục</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>129.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxVNnsdBe9pdK7yI6dMxjCEQk0p4ehUTw0f0zvsy7ppw&amp;s=10" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Minh – Gói Bạch Kim</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Minh Huyền Thoại</li>
+                            <li>Đảm bảo từ 100 tướng</li>
+                            <li>Đảm bảo từ 60 trang phục</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>129.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxVNnsdBe9pdK7yI6dMxjCEQk0p4ehUTw0f0zvsy7ppw&amp;s=10" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Minh – Gói Lục Bảo</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Minh Huyền Thoại</li>
+                            <li>Đảm bảo từ 120 tướng</li>
+                            <li>Đảm bảo có 1 trang phục Sử Thi</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>129.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxVNnsdBe9pdK7yI6dMxjCEQk0p4ehUTw0f0zvsy7ppw&amp;s=10" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Minh – Gói Kim Cương</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Minh Huyền Thoại</li>
+                            <li>Đảm bảo từ 140 tướng</li>
+                            <li>Đảm bảo có 1 trang phục Huyền Thoại</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>129.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxVNnsdBe9pdK7yI6dMxjCEQk0p4ehUTw0f0zvsy7ppw&amp;s=10" alt="Liên Minh Huyền Thoại">
+                    <div class="card-body">
+                        <h3>Túi Mù Liên Minh – Gói Siêu Cấp</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc Liên Minh Huyền Thoại</li>
+                            <li>Đảm bảo từ 150 tướng</li>
+                            <li>Đảm bảo có 1 trang phục Tối Thượng</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>129.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.6 DANH SÁCH: Túi Mù TFT -->
+    <section id="tuimu-tft" class="products acc-list">
+        <div class="container">
+            <h2 class="section-title">Túi Mù TFT</h2>
+            <p>Mua túi mù nhận ngẫu nhiên 1 tài khoản TFT, đảm bảo mức tối thiểu ghi trên từng gói.</p>
+            <p><a href="#products">← Quay lại danh sách game</a></p>
+
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-random-9k.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Túi Mù TFT – Gói Đồng</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc TFT</li>
+                            <li>Đảm bảo từ 3 Linh Thú</li>
+                            <li>Đảm bảo từ 2 Sân Đấu</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>79.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-random-9k.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Túi Mù TFT – Gói Bạc</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc TFT</li>
+                            <li>Đảm bảo từ 6 Linh Thú</li>
+                            <li>Đảm bảo từ 3 Sân Đấu</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>79.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-random-9k.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Túi Mù TFT – Gói Vàng</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc TFT</li>
+                            <li>Đảm bảo từ 10 Linh Thú</li>
+                            <li>Đảm bảo từ 5 Sân Đấu</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>79.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-random-9k.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Túi Mù TFT – Gói Bạch Kim</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc TFT</li>
+                            <li>Đảm bảo từ 15 Linh Thú</li>
+                            <li>Đảm bảo từ 8 Sân Đấu</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>79.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-random-9k.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Túi Mù TFT – Gói Kim Cương</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc TFT</li>
+                            <li>Đảm bảo từ 22 Linh Thú</li>
+                            <li>Đảm bảo có Linh Thú Huyền Thoại</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>79.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://shopt1.com/shopt1-assets/tft-random-9k.webp" alt="TFT (Đấu Trường Chân Lý)">
+                    <div class="card-body">
+                        <h3>Túi Mù TFT – Gói Cao Thủ</h3>
+                        <ul>
+                            <li>Nhận ngẫu nhiên 1 acc TFT</li>
+                            <li>Đảm bảo từ 30 Linh Thú</li>
+                            <li>Đảm bảo từ 12 Sân Đấu</li>
+                        </ul>
+                        <div class="price-box">
+                            <strong>79.000đ</strong>
+                            <!-- Bấm Mua Ngay để chuyển xuống phần liên hệ với shop -->
+                            <a href="#contact" class="btn-buy">Mua Ngay</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ĐĂNG NHẬP (cần đăng nhập mới mua được acc) -->
+    <section id="login" class="contact">
+        <div class="container">
+            <h2 class="section-title">Đăng Nhập</h2>
+            <p>Đăng nhập vào tài khoản TSQH SHOP của bạn.</p>
+
+            <form class="contact-form">
+                <input type="text" placeholder="Tên đăng nhập" required>
+                <input type="password" placeholder="Mật khẩu" required>
+                <button type="submit" class="btn-primary">Đăng Nhập</button>
+            </form>
+        </div>
+    </section>
+
     <!-- 4. ABOUT US (Về chúng tôi) -->
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">Về Chúng Tôi</h2>
-            
+
             <!-- Sử dụng Flexbox cho 3 khối giới thiệu -->
             <div class="about-flex">
                 <div class="about-box">
@@ -114,7 +865,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
-            
+
             <!-- Sử dụng Flexbox cho phần form liên hệ -->
             <div class="contact-flex">
                 <div class="contact-info">
@@ -123,7 +874,7 @@
                     <p>📞 Hotline: 0933534593</p>
                     <p>✉️ Email: daumanhhung12301@gmail.com</p>
                 </div>
-                
+
                 <form class="contact-form">
                     <input type="text" placeholder="Họ và tên của bạn" required>
                     <input type="email" placeholder="Địa chỉ Email" required>

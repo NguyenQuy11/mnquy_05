@@ -41,6 +41,35 @@ body {
     height: 70px;
 }
 
+.header-brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 100%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.brand__logo {
+    display: block;
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.brand__name {
+    margin-left: 10px;
+    color: #38bdf8;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
 .logo {
     font-size: 22px;
     font-weight: bold;
@@ -271,6 +300,22 @@ body {
 
 /* --- RESPONSIVE ĐƠN GIẢN CHO ĐIỆN THOẠI --- */
 @media (max-width: 768px) {
+    .header-container {
+        height: auto;
+        min-height: 70px;
+        gap: 12px;
+        padding: 8px 0;
+    }
+
+    .brand__logo {
+        width: 52px;
+        height: 52px;
+    }
+
+    .brand__name {
+        font-size: 17px;
+    }
+
     .product-grid {
         grid-template-columns: 1fr;
     }
