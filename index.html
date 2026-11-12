@@ -935,6 +935,7 @@
         <div class="cart-panel__footer">
             <strong>Tạm tính: <span id="cart-total">0đ</span></strong>
             <button type="button" class="btn-primary" id="cart-checkout">Thanh toán</button>
+            <p class="form-message" id="cart-checkout-message" role="status"></p>
         </div>
     </aside>
     <div class="cart-backdrop" id="cart-backdrop" hidden></div>
@@ -945,7 +946,10 @@
             <button type="button" id="purchase-account-close" aria-label="Đóng thông tin account">&times;</button>
         </div>
         <div id="purchase-account-details"></div>
-        <a href="#contact" class="btn-primary" id="purchase-contact">Liên hệ để mua</a>
+        <div class="purchase-account__actions">
+            <button type="button" class="btn-primary" id="purchase-add-cart">Thêm vào giỏ hàng</button>
+            <a href="#products" class="btn-login" id="purchase-products">Xem sản phẩm khác</a>
+        </div>
     </aside>
 
     <script src="index.js"></script>

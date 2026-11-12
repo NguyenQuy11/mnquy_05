@@ -4,6 +4,7 @@
     var usersKey = "tsqh-shop-users";
     var currentUserKey = "tsqh-shop-current-user";
     var cartKey = "tsqh-shop-cart";
+    var selectedCard = null;
     var adminAccount = {
         username: "admin",
         email: "admin@tsqh.local",
@@ -80,6 +81,10 @@
         });
     }
 
+    function formatPrice(value) {
+        return Number(value).toLocaleString("vi-VN") + "đ";
+    }
+
     function renderAccount(user) {
         document.getElementById("account-panel").hidden = !user;
         document.getElementById("login-form").hidden = Boolean(user);
@@ -100,13 +105,20 @@
 
     function renderCart() {
         var cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
-        document.getElementById("cart-count").textContent = cart.reduce(function (sum, item) {
+        var count = cart.reduce(function (sum, item) {
             return sum + item.quantity;
         }, 0);
+        var total = cart.reduce(function (sum, item) {
+            return sum + item.price * item.quantity;
+        }, 0);
+        document.getElementById("cart-count").textContent = count;
+        document.getElementById("cart-total").textContent = formatPrice(total);
         document.getElementById("cart-items").innerHTML = cart.length
             ? cart.map(function (item) {
-                return "<div class=\"cart-item\"><strong>" + escapeHtml(item.name) +
-                    "</strong><button type=\"button\" data-remove-cart-item=\"" + escapeHtml(item.id) + "\">Xóa</button></div>";
+                return "<div class=\"cart-item\"><div><strong>" + escapeHtml(item.name) +
+                    "</strong><span>" + formatPrice(item.price) + " x " + item.quantity +
+                    "</span></div><button type=\"button\" data-remove-cart-item=\"" +
+                    escapeHtml(item.id) + "\">Xóa</button></div>";
             }).join("")
             : "<p class=\"cart-empty\">Giỏ hàng đang trống.</p>";
     }
@@ -118,6 +130,7 @@
     }
 
     function showAccountInfo(card) {
+        selectedCard = card;
         var panel = document.getElementById("purchase-account");
         var list = card.querySelector("ul");
         document.getElementById("purchase-account-details").innerHTML =
@@ -128,8 +141,30 @@
     }
 
     function closeAccountInfo() {
+        selectedCard = null;
         document.getElementById("purchase-account").hidden = true;
         document.body.classList.remove("cart-is-open");
+    }
+
+    function addSelectedProductToCart() {
+        if (!selectedCard) {
+            return;
+        }
+        var name = selectedCard.querySelector("h3").textContent.trim();
+        var priceElement = selectedCard.querySelector("strong");
+        var price = priceElement ? Number(priceElement.textContent.replace(/[^\d]/g, "")) : 0;
+        var id = name.toLowerCase() + "-" + price;
+        var cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
+        var item = cart.find(function (entry) { return entry.id === id; });
+        if (item) {
+            item.quantity += 1;
+        } else {
+            cart.push({ id: id, name: name, price: price, quantity: 1 });
+        }
+        localStorage.setItem(cartKey, JSON.stringify(cart));
+        closeAccountInfo();
+        renderCart();
+        document.getElementById("cart-panel").classList.add("is-open");
     }
 
     document.getElementById("login-form").addEventListener("submit", async function (event) {
@@ -205,8 +240,11 @@
                 showAccountInfo(buy.closest(".product-card"));
             }
         }
-        if (event.target.closest("#purchase-account-close") || event.target.closest("#purchase-contact")) {
+        if (event.target.closest("#purchase-account-close") || event.target.closest("#purchase-products")) {
             closeAccountInfo();
+        }
+        if (event.target.closest("#purchase-add-cart")) {
+            addSelectedProductToCart();
         }
         var remove = event.target.closest("[data-remove-cart-item]");
         if (remove) {
@@ -230,6 +268,13 @@
     });
     document.getElementById("cart-close").addEventListener("click", function () {
         document.getElementById("cart-panel").classList.remove("is-open");
+    });
+    document.getElementById("cart-checkout").addEventListener("click", function () {
+        message(
+            document.getElementById("cart-checkout-message"),
+            "Chức năng thanh toán chưa được phát triển.",
+            true
+        );
     });
 
     seedAdmin().then(function () {
